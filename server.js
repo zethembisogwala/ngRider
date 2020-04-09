@@ -9,8 +9,16 @@ var enforce = require('express-sslify');
 app.use(express.static('dist/ngRider'));
 
 // Use enforce.HTTPS({ trustProtoHeader: true }) since you're behind Heroku's reverse proxy
-app.use(enforce.HTTPS({ trustProtoHeader: true }));
+//app.use(enforce.HTTPS({ trustProtoHeader: true }));
 
+app.get('*',function(req,res,next){
+  if(req.protocol !== 'https'){
+  	console.log('Not https, redirectig')
+    res.redirect(`https://${req.header('host')}${req.url}`)
+  }else{
+    next()
+  }
+})
 
 // CORS (Cross-Origin Resource Sharing) headers to support Cross-site HTTP requests
 app.all('*', function(req, res, next) {
