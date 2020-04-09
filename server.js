@@ -6,7 +6,6 @@ var http = require('http');
 
 var enforce = require('express-sslify');
 
-app.use(express.static('dist/ngRider'));
 
 // Use enforce.HTTPS({ trustProtoHeader: true }) since you're behind Heroku's reverse proxy
 //app.use(enforce.HTTPS({ trustProtoHeader: true }));
