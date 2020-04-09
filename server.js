@@ -20,7 +20,7 @@ app.get('*', function (request, response){
     response.sendFile( path.resolve() + '/dist/ngRider/index.html')
 }); //does not work //now it does thanks to adding path.resolve()
 
-app.set('port', process.env.PORT);
+app.set('port', process.env.PORT || 5000);
 
 app.listen(app.get('port'), "0.0.0.0", function () {
     console.log('Express server listening on port ' + app.get('port'));
